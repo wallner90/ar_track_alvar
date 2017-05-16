@@ -72,6 +72,7 @@ double max_track_error;
 std::string cam_image_topic;
 std::string cam_info_topic;
 std::string output_frame;
+std::string tf_prefix_ar;
 int marker_resolution = 5; // default marker resolution
 int marker_margin = 2; // default marker margin
 
@@ -134,7 +135,7 @@ void getCapCallback (const sensor_msgs::ImageConstPtr & image_msg)
                 }
 
 				//Publish the transform from the camera to the marker
-				std::string markerFrame = "ar_marker_";
+                std::string markerFrame = tf_prefix_ar + "ar_marker_";
 				std::stringstream out;
 				out << id;
 				std::string id_string = out.str();
@@ -278,6 +279,8 @@ int main(int argc, char *argv[])
     pn.setParam("max_frequency", max_frequency);  // in case it was not set.
     pn.param("marker_resolution", marker_resolution, 5);
     pn.param("marker_margin", marker_margin, 2);
+	pn.param("tf_prefix_ar", tf_prefix_ar);
+
     if (!pn.getParam("output_frame", output_frame)) {
       ROS_ERROR("Param 'output_frame' has to be set.");
       exit(EXIT_FAILURE);
@@ -292,6 +295,7 @@ int main(int argc, char *argv[])
   pn.setParam("marker_size", marker_size);
   pn.setParam("max_new_marker_error", max_new_marker_error);
   pn.setParam("max_track_error", max_track_error);
+
 
 	marker_detector.SetMarkerSize(marker_size, marker_resolution, marker_margin);
 
