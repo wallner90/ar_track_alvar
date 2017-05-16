@@ -228,6 +228,7 @@ void configCallback(ar_track_alvar::ParamsConfig &config, uint32_t level)
   marker_size = config.marker_size;
   max_new_marker_error = config.max_new_marker_error;
   max_track_error = config.max_track_error;
+  tf_prefix_ar = config.tf_prefix_ar;
 }
 
 void enableCallback(const std_msgs::BoolConstPtr& msg)
