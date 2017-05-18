@@ -136,7 +136,7 @@ Camera::Camera(ros::NodeHandle & n, std::string cam_info_topic):n_(n)
 	x_res = 640;
 	y_res = 480;
 	cameraInfoTopic_ = cam_info_topic;
-	ROS_INFO ("Subscribing to info topic");
+	//ROS_INFO_STREAM(__FUNCTION__ << "Subscribing to info topic (Alvar)");
     sub_ = n_.subscribe (cameraInfoTopic_, 1, &Camera::camInfoCallback, this);
     getCamInfo_ = false;
 }
@@ -263,7 +263,6 @@ void Camera::camInfoCallback (const sensor_msgs::CameraInfoConstPtr & cam_info)
     {
         SetCameraInfo(*cam_info);
         getCamInfo_ = true;
-        sub_.shutdown();
     }
   }
 

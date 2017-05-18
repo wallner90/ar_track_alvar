@@ -2,31 +2,6 @@
 Changelog for package ar_track_alvar
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-0.5.6 (2017-02-09)
-------------------
-* [fix] Marker no longer recognized, for IndividualMarkersNoKinect `#93 <https://github.com/sniekum/ar_track_alvar/issues/93>`_
-* [capability] Add param to derive camera frame from pointcloud message frame (`#111 <https://github.com/sniekum/ar_track_alvar/issues/111>`_)
-* [capability ] individual marker nodes: replace command line args with ros parameters (`#99 <https://github.com/sniekum/ar_track_alvar/issues/99>`_)
-* [maintenance] Add system test using .bag. (`#106 <https://github.com/sniekum/ar_track_alvar/issues/106>`_)
-* Contributors: Hans-Joachim Krauch, Isaac I.Y. Saito
-
-0.5.5 (2017-02-07)
-------------------
-* [fix] Marker no longer recognized `#93 <https://github.com/sniekum/ar_track_alvar/issues/93>`_
-* [fix] add install rule for bundles folder; fixes `#88 <https://github.com/sniekum/ar_track_alvar/issues/88>`_
-* [enhancement] individualMarkers: replace cout with ROS_DEBUG_STREAM (`#101 <https://github.com/sniekum/ar_track_alvar/issues/101>`_)
-* Contributors: Hans-Joachim Krauch, Isaac I.Y. Saito, TORK Developer 534
-
-0.5.4 (2016-09-26)
-------------------
-* [fix] Shutdown camera info sub after called
-  Disable camera info subscription after receiving the info.
-  This stops e. g. Asus Xtion from having an active subscription to the RGB image stream and thus saving CPU.
-* [capability] add mark_resolution and mark_marge as input option
-* [capability] New parameter -array to create an array of markers `#83 <https://github.com/sniekum/ar_track_alvar/issues/83>`_
-* [maintenance] Add a maintainer to receive notification from ros buildfarm.
-* Contributors: AlexReimann, Isaac I.Y. Saito, Mehdi, Tokyo Opensource Robotics Developer 534
-
 0.5.3 (2016-02-02)
 ------------------
 * [feat] New bool-Topic to enable/disable the marker detection (`#70 <https://github.com/sniekum/ar_track_alvar/issues/70>`_)
