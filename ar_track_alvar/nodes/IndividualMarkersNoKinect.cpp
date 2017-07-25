@@ -72,7 +72,7 @@ double max_track_error;
 std::string cam_image_topic;
 std::string cam_info_topic;
 std::string output_frame;
-std::string tf_prefix_ar;
+std::string tf_prefix;
 int marker_resolution = 5; // default marker resolution
 int marker_margin = 2; // default marker margin
 
@@ -135,7 +135,7 @@ void getCapCallback (const sensor_msgs::ImageConstPtr & image_msg)
                 }
 
 				//Publish the transform from the camera to the marker
-                std::string markerFrame = tf_prefix_ar + "ar_marker_";
+                std::string markerFrame = tf_prefix + "/ar_marker_";
 				std::stringstream out;
 				out << id;
 				std::string id_string = out.str();
@@ -228,7 +228,6 @@ void configCallback(ar_track_alvar::ParamsConfig &config, uint32_t level)
   marker_size = config.marker_size;
   max_new_marker_error = config.max_new_marker_error;
   max_track_error = config.max_track_error;
-  tf_prefix_ar = config.tf_prefix_ar;
 }
 
 void enableCallback(const std_msgs::BoolConstPtr& msg)
@@ -242,6 +241,7 @@ int main(int argc, char *argv[])
 	ros::init (argc, argv, "marker_detect");
 	ros::NodeHandle n, pn("~");
 
+	pn.getParam("tf_prefix", tf_prefix);
   if(argc > 1) {
     ROS_WARN("Command line arguments are deprecated. Consider using ROS parameters and remappings.");
 
@@ -280,7 +280,7 @@ int main(int argc, char *argv[])
     pn.setParam("max_frequency", max_frequency);  // in case it was not set.
     pn.param("marker_resolution", marker_resolution, 5);
     pn.param("marker_margin", marker_margin, 2);
-	pn.param("tf_prefix_ar", tf_prefix_ar);
+
 
     if (!pn.getParam("output_frame", output_frame)) {
       ROS_ERROR("Param 'output_frame' has to be set.");
